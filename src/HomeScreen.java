@@ -322,15 +322,28 @@ private JFrame frame;
 	    panel.add(label, BorderLayout.WEST);
 		JOptionPane.showMessageDialog(frame, panel, title, JOptionPane.PLAIN_MESSAGE);
 	}
-		private ArrayList<Slang> randomQuizOptions() {
-		Object[] keys = baseSlangs.keySet().toArray();
-		ArrayList<Slang> slangOptions = new ArrayList<Slang>();
-		
-		while (slangOptions.size() < NUMBER_OF_QUIZ_ANSWER) {
-			int randomIndex = new Random().nextInt(keys.length);
-			Slang randomSlang = baseSlangs.get(keys[randomIndex]);
-			if (!slangOptions.contains(randomSlang)) {
-				slangOptions.add(randomSlang);
+	
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selected = listResult.getSelectedValue().toString();
+				String[] data = selected.split(": ");
+            
+            	if (data.length > 1) {
+            		// show confirm dialog
+            		int result = showConfirmDialog("Really", "Do you really want to delete it?");
+            		if (result == 0) {
+            			String oldSlag = data[0];
+                		String oldMean = data[1];
+                		int updateIndex = listMode.indexOf(selected);
+            			listMode.remove(updateIndex);
+            			baseSlangs.remove(oldSlag);
+            			
+            			updateInFile(SLANGS_FILE_PATH, oldSlag + "`" + oldMean + "\n", "");
+            		}
+            	}
 			}
-		}
+			
+		});
 }
