@@ -315,5 +315,11 @@ private JFrame frame;
 	    newSlang.put("mean", mean.getText());
 	    return newSlang;
 	}
-	
+	private void showDialog(JFrame frame, String title, String content) {
+		JPanel panel = new JPanel(new BorderLayout(5, 5));
+	    JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+	    label.add(new JLabel(content, SwingConstants.RIGHT));
+	    panel.add(label, BorderLayout.WEST);
+		JOptionPane.showMessageDialog(frame, panel, title, JOptionPane.PLAIN_MESSAGE);
+	}
 }
