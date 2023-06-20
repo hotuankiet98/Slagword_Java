@@ -322,4 +322,15 @@ private JFrame frame;
 	    panel.add(label, BorderLayout.WEST);
 		JOptionPane.showMessageDialog(frame, panel, title, JOptionPane.PLAIN_MESSAGE);
 	}
+		private ArrayList<Slang> randomQuizOptions() {
+		Object[] keys = baseSlangs.keySet().toArray();
+		ArrayList<Slang> slangOptions = new ArrayList<Slang>();
+		
+		while (slangOptions.size() < NUMBER_OF_QUIZ_ANSWER) {
+			int randomIndex = new Random().nextInt(keys.length);
+			Slang randomSlang = baseSlangs.get(keys[randomIndex]);
+			if (!slangOptions.contains(randomSlang)) {
+				slangOptions.add(randomSlang);
+			}
+		}
 }
