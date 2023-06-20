@@ -292,5 +292,28 @@ private JFrame frame;
 		});
 		frame.getContentPane().add(btnQuiz2);
 	}
+	private Hashtable<String, String> showCreateDialog(JFrame frame) {
+	    Hashtable<String, String> newSlang = new Hashtable<String, String>();
+
+	    JPanel panel = new JPanel(new BorderLayout(5, 5));
+
+	    JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+	    label.add(new JLabel("Slag", SwingConstants.RIGHT));
+	    label.add(new JLabel("Meaning", SwingConstants.RIGHT));
+	    panel.add(label, BorderLayout.WEST);
+
+	    JPanel controls = new JPanel(new GridLayout(0, 1, 10, 2));
+	    JTextField slag = new JTextField();
+	    controls.add(slag);
+	    JTextField mean = new JTextField();
+	    controls.add(mean);
+	    panel.add(controls, BorderLayout.CENTER);
+
+	    JOptionPane.showMessageDialog(frame, panel, "New Slangword", JOptionPane.PLAIN_MESSAGE);
+
+	    newSlang.put("slag", slag.getText());
+	    newSlang.put("mean", mean.getText());
+	    return newSlang;
+	}
 	
 }
