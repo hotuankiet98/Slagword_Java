@@ -346,4 +346,20 @@ private JFrame frame;
 			}
 			
 		});
+		private void setupResultList(Object[] keys, boolean isFromSearch) {
+		btnReset.setEnabled(false);
+		listMode.removeAllElements();
+		
+		for (int i = 0; i < keys.length; i++) {
+			Slang slang = baseSlangs.get(keys[i]);
+			if (slang != null) {
+				listMode.add(i, slang.toString());
+			} else if (isFromSearch) {
+				searchForMeaning(keys[i].toString());
+			}
+		}
+		btnReset.setEnabled(true);
+		
+		resetThread.start();
+	}
 }
